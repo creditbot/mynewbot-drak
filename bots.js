@@ -4484,55 +4484,6 @@ mentionned.send(` :credit_card: | Transfer Receipt \`\`\`You have received ${arg
 	
 	
 	
-		client.on('message', async message => {
-  if(message.content.startsWith(prefix + "javas")) {
-    await message.channel.send("**:pencil: | من فضلك اكتب الكود الأن... :pencil2: **").then(e => {
-    let filter = m => m.author.id === message.author.id
-    let lan = '';
-    let md = '';
-    let br = '';
-    let chaLan = message.channel.awaitMessages(filter, { max: 1, time: 40000, errors: ['time'] })
-    .then(collected => {
-      lan = collected.first().content
-      collected.first().delete()
-e.delete();
-     message.channel.send('**:scroll: | من فضلك اكتب وصف الكود الأن... :pencil2:**').then(m => {
-let chaMd = message.channel.awaitMessages(filter, { max: 1, time: 40000, errors: ['time'] })
-.then(co => {
-  md = co.first().content
-        co.first().delete()
-        m.delete();
-message.channel.send('**:man_in_tuxedo: | من فضلك اكتب من صنع هذا الكود الأن... :pencil2:**').then(ms => {
-let br = message.channel.awaitMessages(filter, { max: 1, time: 40000, errors: ['time'] })
-.then(col => {
-  br = col.first().content
-        col.first().delete()
-
-ms.delete()
-
- message.channel.send('** انتظر..**').then(b => {
-        setTimeout(() => {
-  b.edit(`**:dove: | Done :white_check_mark:, تم بنجاح نشر كودك في روم الاكواد**`)
-        },2000);
-var gg = message.guild.channels.find('name','discord.js')
-if(!gg) return;
-if(gg) {
-gg.send({embed : new Discord.RichEmbed()
-.setDescription(`**ماذا تريد:scroll: » \n ${lan}\nكم تدفع :moneybag: » \n ${md} \n من الذي تشتري منه :round_pushpin: » \n ${br}  \n تم التقديم بوسطة :top: » <@${message.author.id}> **`)  
-          .setFooter(`Rqmi,System Team♥`)
-.setTimestamp()
-});
-}        
-})
-})
-})
-})
-})
-})
-})
- }
-})
-	
 	
 	
 	
