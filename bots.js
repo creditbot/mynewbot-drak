@@ -4518,7 +4518,7 @@ let chayn = message.channel.awaitMessages(filter, { max: 1, time: 40000, errors:
 
  message.channel.send('** انتظر..**').then(b => {
         setTimeout(() => {
-  b.edit(`**تم التقديم وسيتم الرد فـ اقرب وقت:white_check_mark:**`)
+  b.edit(`**:dove: | Done :white_check_mark:, تم بنجاح نشر كودك في روم الاكواد**`)
         },2000);
 var gg = message.guild.channels.find('name','discord.js')
 if(!gg) return;
