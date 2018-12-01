@@ -20,6 +20,7 @@ const figlet = require('figlet');
 const google = require('google-it'); 
 const queue = new Map(); 
 const zalgo = require('zalgolize');   
+const userData = JSON.parse(fs.readFileSync('./userData.json', 'utf8'));
 const fetchVideoInfo = require('youtube-info');
 const YouTube = require('simple-youtube-api');
 const ytdl = require('ytdl-core');
@@ -3479,12 +3480,339 @@ client.on("guildMemberAdd", member => {
 
 
 
+client.on('guildMemberAdd', member => {
+  if(!ar[member.guild.id]) ar[member.guild.id] = {
+  onoff: 'Off',
+  role: 'Member'
+  }
+  if(ar[member.guild.id].onoff === 'Off') return;
+member.addRole(member.guild.roles.find(`name`, ar[member.guild.id].role)).catch(console.error)
+})
+
+client.on('message', message => {
+
+if(!message.guild) return
+  if(!ar[message.guild.id]) ar[message.guild.id] = {
+  onoff: 'Off',
+  role: 'Member'
+  }
+
+if(message.content.startsWith(prefix + `autorole`)) {
+  let perms = message.member.hasPermission(`MANAGE_ROLES`)
+
+  if(!perms) return message.reply(`You don't have permissions, required permission : Manage Roles.`)
+  let args = message.content.split(" ").slice(1)
+  if(!args.join(" ")) return message.reply(`${prefix}autorle toggle/setrole [ROLE NAME]`)
+  let state = args[0]
+  if(!state.trim().toLowerCase() == 'toggle' || !state.trim().toLowerCase() == 'setrole') return message.reply(`Please type a right state, ${prefix}modlogs toggle/setrole [ROLE NAME]`)
+    if(state.trim().toLowerCase() == 'toggle') {
+     if(ar[message.guild.id].onoff === 'Off') return [message.channel.send(`**The Autorole Is __𝐎𝐍__ !**`), ar[message.guild.id].onoff = 'On']
+     if(ar[message.guild.id].onoff === 'On') return [message.channel.send(`**The Autorole Is __𝐎𝐅𝐅__ !**`), ar[message.guild.id].onoff = 'Off']
+    }
+   if(state.trim().toLowerCase() == 'set') {
+   let newRole = message.content.split(" ").slice(2).join(" ")
+   if(!newRole) return message.reply(`${prefix}autorole setrole [ROLE NAME]`)
+     if(!message.guild.roles.find(`name`,newRole)) return message.reply(`I Cant Find This Role.`)
+    ar[message.guild.id].role = newRole
+     message.channel.send(`**The AutoRole Has Been Changed to ${newRole}.**`)
+   }
+         }
+
+if(message.content === prefix + 'info') {
+    let perms = message.member.hasPermission(`MANAGE_GUILD`)
+    if(!perms) return message.reply(`You don't have permissions.`)
+    var embed = new Discord.RichEmbed()
+
+.addField(`Autorole : :sparkles:  `, `
+
+State : __${ar[message.guild.id].onoff}__
+Role : __${ar[message.guild.id].role}__`)
+
+
+    .setColor(`BLUE`)
+    message.channel.send({embed})
+  }
+
+
+    fs.writeFile("./Data/AutoRole.json", JSON.stringify(ar), (err) => {
+    if (err) console.error(err)
+  });
+
+
+})
+
+
+
+client.on('ready', () => {
+  console.log(`AutoRole Code Started By Friends Team`);
+    client.user.setStatus("dnd")
+});
+
+
+
+
+client.on('ready', () => {
+  console.log('╔[══════════════════════════════════]╗');
+  console.log('')
+  console.log('            ╔[════════════]╗')
+  console.log('              Bot Is Online')
+  console.log('            ╚[════════════]╝')
+  console.log('')
+  console.log(`Logged in as ${client.user.tag}!`);
+  console.log('')
+  console.log(`servers! [ " ${client.guilds.size} " ]`);
+  console.log('')
+  console.log(`Users! [ " ${client.users.size} " ]`);
+  console.log('')
+  console.log('╚[════════════════════════════════════]╝')
+});
+
+
+
+let points = {}
+
+client.on('message', message => {
+if (!points[message.author.id]) points[message.author.id] = {
+    points: 0,
+  };
+if (message.content.startsWith(prefix + 'فكك')) {
+    if(!message.channel.guild) return message.reply('**لا تلعب عندي العب بالسيرفرات**').then(m => m.delete(3000));
+
+const type = require('./gamesRqmibot/fkk.json');
+const item = type[Math.floor(Math.random() * type.length)];
+const filter = response => {
+    return item.answers.some(answer => answer.toLowerCase() === response.content.toLowerCase());
+};
+message.channel.send('**الحق عندك 15 ثانية**').then(msg => {
+
+            
+msg.channel.send(`${item.type}`).then(() => {
+        message.channel.awaitMessages(filter, { maxMatches: 1, time: 15000, errors: ['time'] })
+        .then((collected) => {
+        message.channel.send(`${collected.first().author} ✅ أصلي عليك`);
+            let points = {}
+            let userData = points[message.author.id];
+            let userdata = require('./Points.json');
+            userData.points++;
+          })
+          .catch(collected => {
+            message.channel.send(`🕓😀أنتهى الوقت أعد العب مرة آخرى😀🕓`);
+          })
+        })
+    })
+}
+});
+
+
+
+
+client.on('message', message => {
+if (!points[message.author.id]) points[message.author.id] = {
+    points: 0,
+  };
+if (message.content.startsWith(prefix + 'عواصم')) {
+    if(!message.channel.guild) return message.reply('**هذا الأمر للسيرفرات فقط**').then(m => m.delete(3000));
+
+const type = require('./gamesRqmibot/3awasem.json');
+const item = type[Math.floor(Math.random() * type.length)];
+const filter = response => {
+    return item.answers.some(answer => answer.toLowerCase() === response.content.toLowerCase());
+};
+message.channel.send('**👑لديك 15 ثانية للإجابة على السؤال!👑**').then(msg => {
+
+            
+msg.channel.send(`${item.type}`).then(() => {
+        message.channel.awaitMessages(filter, { maxMatches: 1, time: 15000, errors: ['time'] })
+        .then((collected) => {
+        message.channel.send(`${collected.first().author} ✅ **الإجابة صحيحة بطل**`);
+        console.log(`[Typing] ${collected.first().author} typed the word.`);
+            let points = {}
+            let userData = points[message.author.id];
+            let userdata = require('./points.json');
+            userData.points++;
+          })
+          .catch(collected => {
+            message.channel.send(`🕓😀أنتهى الوقت أعد العب مرة آخرى😀🕓`);
+          })
+        })
+    })
+}
+});
 
 
 
 
 
+client.on('message', message => {
+if (!points[message.author.id]) points[message.author.id] = {
+    points: 0,
+  };
+if (message.content.startsWith(prefix + 'رياضيات')) {
+    if(!message.channel.guild) return message.reply('**هذا الأمر للسيرفرات فقط**').then(m => m.delete(3000));
 
+const type = require('./gamesRqmibot/ryd.json');
+const item = type[Math.floor(Math.random() * type.length)];
+const filter = response => {
+    return item.answers.some(answer => answer.toLowerCase() === response.content.toLowerCase());
+};
+message.channel.send('**👑لديك 30 ثانية يلا ركز يا بطل👑**').then(msg => {
+
+            
+msg.channel.send(`${item.type}`).then(() => {
+        message.channel.awaitMessages(filter, { maxMatches: 1, time: 30000, errors: ['time'] })
+        .then((collected) => {
+        message.channel.send(`${collected.first().author} ✅ **والله أنك ذكي وحش يا بطل**`);
+        console.log(`[Typing] ${collected.first().author} typed the word.`);
+            let points = {}
+            let userData = points[message.author.id];
+            let userdata = require('./points.json');
+            userData.points++;
+          })
+          .catch(collected => {
+            message.channel.send(`🕓😀أنتهى الوقت أعد العب مرة آخرى😀🕓`);
+          })
+        })
+    })
+}
+});
+
+
+
+client.on('message', message => {
+if (!points[message.author.id]) points[message.author.id] = {
+    points: 0,
+  };
+if (message.content.startsWith(prefix + 'لغز')) {
+    if(!message.channel.guild) return message.reply('**هذا الأمر للسيرفرات فقط**').then(m => m.delete(3000));
+
+const type = require('./gamesRqmibot/quiz.json');
+const item = type[Math.floor(Math.random() * type.length)];
+const filter = response => {
+    return item.answers.some(answer => answer.toLowerCase() === response.content.toLowerCase());
+};
+message.channel.send('**👑لديك 30 ثانية لحل هذا الغز👑**').then(msg => {
+
+            
+msg.channel.send(`${item.type}`).then(() => {
+        message.channel.awaitMessages(filter, { maxMatches: 1, time: 30000, errors: ['time'] })
+        .then((collected) => {
+        message.channel.send(`${collected.first().author} ✅ **الجواب صحيح صح عليك**`);
+        console.log(`[Typing] ${collected.first().author} typed the word.`);
+            let points = {}
+            let userData = points[message.author.id];
+            let userdata = require('./points.json');
+            userData.points++;
+          })
+          .catch(collected => {
+            message.channel.send(`🕓😀أنتهى الوقت أعد العب مرة آخرى😀🕓`);
+          })
+        })
+    })
+}
+});
+
+
+
+              client.on('message', message => {
+                if (!points[message.author.id]) points[message.author.id] = {
+                  points: 0,
+                  };
+                if (message.content.startsWith(prefix + 'ركب')) {
+                  if(!message.channel.guild) return message.reply('**هذا الأمر للسيرفرات فقط**').then(m => m.delete(3000));
+                
+                const type = require('./gamesRqmibot/RKB.json');
+                const item = type[Math.floor(Math.random() * type.length)];
+                const filter = response => {
+                    return item.answers.some(answer => answer.toLowerCase() === response.content.toLowerCase());
+                };
+                message.channel.send('**لديك 20 ثانيه لتركيب الكلمه**').then(msg => {
+                
+                      
+                msg.channel.send(`${item.type}`).then(() => {
+                        message.channel.awaitMessages(filter, { maxMatches: 1, time: 20000, errors: ['time'] })
+                        .then((collected) => {
+                    message.channel.send(`${collected.first().author} ✅ **احسنت لقد تمكنت من تركيب الكلمه بسرعه**`);
+                    console.log(`[Typing] ${collected.first().author} typed the word.`);
+                            let won = collected.first().author;
+                            points[won.id].points++;
+                          })
+                          .catch(collected => {
+                            message.channel.send(`:x: **لم يتمكن احد من تركيب الكلمه في الوقت المناسب**`);
+                      console.log('[Typing] Error: No one type the word.');
+                          })
+                    })
+                  })
+                }
+                });
+
+
+
+            
+            client.on('message', message => {
+            if (!points[message.author.id]) points[message.author.id] = {
+                points: 0,
+              };
+            if (message.content.startsWith(prefix + 'شقلب')) {
+                if(!message.channel.guild) return message.reply('**هذا الأمر للسيرفرات فقط**').then(m => m.delete(3000));
+            
+            const type = require('./gamesRqmibot/SHAKLEB.json');
+            const item = type[Math.floor(Math.random() * type.length)];
+            const filter = response => {
+                return item.answers.some(answer => answer.toLowerCase() === response.content.toLowerCase());
+            };
+            message.channel.send('**لديك 15 ثانيه لشقلبة الكلمه**').then(msg => {
+            
+                        
+            msg.channel.send(`${item.type}`).then(() => {
+                    message.channel.awaitMessages(filter, { maxMatches: 1, time: 15000, errors: ['time'] })
+                    .then((collected) => {
+                    message.channel.send(`${collected.first().author} ✅ **احسنت,لقد تمكنت من شقلبة الكلمة في الوقت المناسب**`);
+                    console.log(`[Typing] ${collected.first().author} typed the word.`);
+                        let won = collected.first().author;
+                        points[won.id].points++;
+                      })
+                      .catch(collected => {
+                        message.channel.send(`:x: **لم يتمكن احد من شقلبة الكلمه في الوقت المناسب**`);
+                        console.log('[Typing] Error: No one type the word.');
+                      })
+                    })
+                })
+            }
+            });
+
+
+
+                client.on('message', message => {
+                  if (!points[message.author.id]) points[message.author.id] = {
+                    points: 0,
+                    };
+                  if (message.content.startsWith(prefix + 'كتابة')) {
+                    if(!message.channel.guild) return message.reply('**هذا الأمر للسيرفرات فقط**').then(m => m.delete(3000));
+                  
+                  const type = require('./gamesRqmibot/type.json');
+                  const item = type[Math.floor(Math.random() * type.length)];
+                  const filter = response => {
+                      return item.answers.some(answer => answer.toLowerCase() === response.content.toLowerCase());
+                  };
+                  message.channel.send('** لديك 15 ثانيه لكتابه هذه الكلمه بسرعة**').then(msg => {
+                  
+                        
+                  msg.channel.send(`${item.type}`).then(() => {
+                          message.channel.awaitMessages(filter, { maxMatches: 1, time: 15000, errors: ['time'] })
+                          .then((collected) => {
+                      message.channel.send(`${collected.first().author} ✅ **احسنت لقد تمكنت من كتابه هذه الكلمه بسرعه**`);
+                      console.log(`[Typing] ${collected.first().author} typed the word.`);
+                              let won = collected.first().author;
+                              points[won.id].points++;
+                            })
+                            .catch(collected => {
+                              message.channel.send(`:x: **لم يتمكن احد من كتابه هذه الكلمه في الوقت المناسب**`);
+                        console.log('[Typing] Error: No one type the word.');
+                            })
+                      })
+                    })
+                  }
+                  });
 
 
 
