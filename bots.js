@@ -352,12 +352,6 @@ client.on("message", message => {
     }
       });  
 client.on('message', message => {
-    if (message.content.startsWith("=bans")) {
-        message.guild.fetchBans()
-        .then(bans => message.channel.send(`Number of banned persons **${bans.size}** `))
-}
-});
-client.on('message', message => {
     if (message.content.startsWith("!avatar")) {
 if(!message.channel.guild) return;
         var mentionned = message.mentions.users.first();
@@ -2798,20 +2792,6 @@ m.sendMessage(args)
 
 
 
-client.on('message', msg => {
-    if (msg.content === 'حبيبي') {
-      msg.reply('**لاتحتك يا اخوي لو سمحت**');
-    }
-  });
-
-
-
-
-client.on('message', msg => {
-    if (msg.content === 'احبك') {
-      msg.reply('**لاتحتك يا اخوي لو سمحت**');
-    }
-  });
   
   
   
@@ -3026,6 +3006,7 @@ message.guild.createChannel('admin-chat', 'text');
 message.guild.createChannel('bot-join-leave', 'text');
 message.guild.createChannel('report', 'text');
 message.guild.createChannel('warns', 'text');
+message.guild.createChannel('تقديم', 'text');
 message.guild.createChannel('▓▬▬▬ADMNS▬▬▬▓', 'voice');
 message.guild.createChannel('Owner - مالك السيرفر', 'voice');
 message.guild.createChannel('Co Owner - نائب الرئيس', 'voice');
@@ -3447,15 +3428,6 @@ client.on('guildMemberAdd', member => {
   }); 
 });
 
-client.on('message', DEL => {
-if(DEL.content === '!owner') {
-var embed = new Discord.RichEmbed()
-.addField('صاْنع البوت : - ➹Drak ※#6681 ', `${client.user.tag}`, true)
-.setColor("RANDOM")
-DEL.channel.sendEmbed(embed);
-
-}
-});
 
 
 
@@ -3770,6 +3742,20 @@ message.channel.send(image)
 });
 
 
+ client.on("message", message => {
+	 var prefix = "!"
+	 if (!message.content.startsWith(prefix)) return;
+		let command = message.content.split(" ") [0];
+		command = command.slice(prefix.length);
+			if(command === "skin") {
+					const args = message.content.split(" ").slice(1).join(" ")
+			if (!args) return message.channel.send("**  **");
+			const image = new Discord.Attachment(`https://minotar.net/armor/body/${args}`, "skin.png");
+		message.channel.send(image)
+        }
+    });
+
+
 
 
   client.on('message', function(message) {
@@ -3870,7 +3856,7 @@ client.users.filter(u => u.discriminator == args[0]).forEach(u => {
 })
 }
 }
-if(message.content ===('-discrim') ) {
+if(message.content ===('!discrim') ) {
      if(!message.channel.guild) return message.reply('** This command only for servers **')
   let sent = 0
     let count = 1;
@@ -3898,7 +3884,7 @@ client.users.filter(u => u.discriminator == message.author.discriminator).forEac
 
   //نسخة جاكيو المطورة حقوق كودز فقط
  client.on('message', message => { //jackeo جاكيو
-    if (message.content.startsWith("hack")) {
+    if (message.content.startsWith("!hack")) {
   if(!message.channel.guild) return message.reply(' ');//jackeo جاكيو
       if (message.author.bot) return//jackeo جاكيو
            message.delete();//jackeo جاكيو
@@ -3950,7 +3936,7 @@ client.users.filter(u => u.discriminator == message.author.discriminator).forEac
      client.on("message",  message => {
 
          let args = message.content.split(' ').slice(1);
-    if(message.content.startsWith('nickname')) {
+    if(message.content.startsWith('!nickname')) {
         if (!message.member.hasPermission("MANAGE_NICKNAMES")) {
             message.channel.send("حط الاسم")
         } else {
@@ -3968,6 +3954,411 @@ client.users.filter(u => u.discriminator == message.author.discriminator).forEac
 	
 	
 	
+	
+	
+		client.on('guildCreate', guild => {
+  var embed = new Discord.RichEmbed()
+  .setColor(0x5500ff)
+  .setDescription(`**شكراً لك لإضافه البوت الى سيرفرك**`)
+      guild.owner.send(embed)
+});
+
+
+
+
+
+
+
+const adkar = [
+	'**اذكار  | **اللَّهُمَّ اكْفِنِي بِحَلَالِكَ عَنْ حَرَامِكَ وَأَغْنِنِي بِفَضْلِكَ عَمَّنْ سِوَاكَ.',
+	'**اذكار  |  **اللَّهُمَّ إِنِّي أَسْأَلُكَ الْهُدَى وَالتُّقَى وَالْعَفَافَ وَالْغِنَى. ',
+	'**اذكار  ‏|  **اللَّهُمَّ اغْفِرْ لِي ذَنْبِي كُلَّهُ، دِقَّهُ، وَجِلَّهُ، وَأَوَّلَهُ، وَآخِرَهُ، وَعَلَانِيَتَهُ، وَسِرَّهُ. ',
+	'**‏اذكار  |  **أستغفر الله .',
+	'**‏اذكار  | **الْلَّهُ أَكْبَرُ',
+	'**‏اذكار  |  **لَا إِلَهَ إِلَّا اللَّهُ',
+	'**اذكار  |  **اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ كَمَا صَلَّيْتَ عَلَى إِبْرَاهِيمَ , وَعَلَى آلِ إِبْرَاهِيمَ إِنَّكَ حَمِيدٌ مَجِيدٌ , اللَّهُمَّ بَارِكْ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ كَمَا بَارَكْتَ عَلَى إِبْرَاهِيمَ وَعَلَى آلِ إِبْرَاهِيمَ إِنَّكَ حَمِيدٌ مَجِيدٌ.',
+	'**اذكار  |  **سُبْحَانَ الْلَّهِ، وَالْحَمْدُ لِلَّهِ، وَلَا إِلَهَ إِلَّا الْلَّهُ، وَالْلَّهُ أَكْبَرُ',
+	'**اذكار  | **لَا إلَه إلّا اللهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلُّ شَيْءِ قَدِيرِ.',
+	'**اذكار  | **أسْتَغْفِرُ اللهَ وَأتُوبُ إلَيْهِ',
+	'**‏اذكا��  | **سُبْحـانَ اللهِ وَبِحَمْـدِهِ. ',
+	'‏**اذكار**|  لَا إلَه إلّا اللهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءِ قَدِيرِ.',
+	'**اذكار  ‏|   **اللَّهُمَّ إِنِّي أَسْأَلُكَ عِلْمًا نَافِعًا، وَرِزْقًا طَيِّبًا، وَعَمَلًا مُتَقَبَّلًا.',
+	'**اذكار  | ‏ **يَا رَبِّ , لَكَ الْحَمْدُ كَمَا يَنْبَغِي لِجَلَالِ وَجْهِكَ , وَلِعَظِيمِ سُلْطَانِكَ.',
+	'اذكار    |  **أسْتَغْفِرُ اللهَ العَظِيمَ الَّذِي لاَ إلَهَ إلاَّ هُوَ، الحَيُّ القَيُّومُ، وَأتُوبُ إلَيهِ.**',
+	'**‏اذكار  |  **اللَّهُمَّ إِنَّا نَعُوذُ بِكَ مِنْ أَنْ نُشْرِكَ بِكَ شَيْئًا نَعْلَمُهُ ، وَنَسْتَغْفِرُكَ لِمَا لَا نَعْلَمُهُ.',
+	'**‏اذكار  |  **اللَّهُمَّ صَلِّ وَسَلِّمْ وَبَارِكْ على نَبِيِّنَا مُحمَّد. ',
+	'**‏اذكار  |  **أَعـوذُ بِكَلِمـاتِ اللّهِ التّـامّـاتِ مِنْ شَـرِّ ما خَلَـق.',
+	'**اذكار  |  **يَا حَيُّ يَا قيُّومُ بِرَحْمَتِكَ أسْتَغِيثُ أصْلِحْ لِي شَأنِي كُلَّهُ وَلاَ تَكِلْنِي إلَى نَفْسِي طَـرْفَةَ عَيْنٍ. ',
+	'**اذكار  |  **اللّهُـمَّ إِنّـي أَعـوذُ بِكَ مِنَ الْكُـفر ، وَالفَـقْر ، وَأَعـوذُ بِكَ مِنْ عَذابِ القَـبْر ، لا إلهَ إلاّ أَنْـتَ.',
+	'**‏اذكار  |  **اللّهُـمَّ عافِـني في بَدَنـي ، اللّهُـمَّ عافِـني في سَمْـعي ، اللّهُـمَّ عافِـني في بَصَـري ، لا إلهَ إلاّ أَنْـتَ.',
+	'**‏اذكار  |  **سُبْحـانَ اللهِ وَبِحَمْـدِهِ عَدَدَ خَلْـقِه ، وَرِضـا نَفْسِـه ، وَزِنَـةَ عَـرْشِـه ، وَمِـدادَ كَلِمـاتِـه. ',
+	'**‏اذكار  |  **اللّهُـمَّ بِكَ أَصْـبَحْنا وَبِكَ أَمْسَـينا ، وَبِكَ نَحْـيا وَبِكَ نَمُـوتُ وَإِلَـيْكَ النُّـشُور.',
+	'**‏اذكار  |  **بِسـمِ اللهِ الذي لا يَضُـرُّ مَعَ اسمِـهِ شَيءٌ في الأرْضِ وَلا في السّمـاءِ وَهـوَ السّمـيعُ العَلـيم. ',
+	'**‏اذكار  |  **حَسْبِـيَ اللّهُ لا إلهَ إلاّ هُوَ عَلَـيهِ تَوَكَّـلتُ وَهُوَ رَبُّ العَرْشِ العَظـيم.',
+	'**اذكار  |  **اللّهُـمَّ ما أَصْبَـَحَ بي مِـنْ نِعْـمَةٍ أَو بِأَحَـدٍ مِـنْ خَلْـقِك ، فَمِـنْكَ وَحْـدَكَ لا شريكَ لَـك ، فَلَـكَ الْحَمْـدُ وَلَـكَ الشُّكْـر.',
+	'**‏اذكار  |  **اللّهُـمَّ إِنِّـي أَصْبَـحْتُ أُشْـهِدُك ، وَأُشْـهِدُ حَمَلَـةَ عَـرْشِـك ، وَمَلَائِكَتَكَ ، وَجَمـيعَ خَلْـقِك ، أَنَّـكَ أَنْـتَ اللهُ لا إلهَ إلاّ أَنْـتَ وَحْـدَكَ لا شَريكَ لَـك ، وَأَنَّ ُ مُحَمّـداً عَبْـدُكَ وَرَسـولُـك',
+	'**‏اذكار  |  **رَضيـتُ بِاللهِ رَبَّـاً وَبِالإسْلامِ ديـناً وَبِمُحَـمَّدٍ صلى الله عليه وسلم نَبِيّـاً',
+	'**‏اذكار  |  **اللهم إني أعوذ بك من العجز، والكسل، والجبن، والبخل، والهرم، وعذاب القبر، اللهم آت نفسي تقواها، وزكها أنت خير من زكاها. أنت وليها ومولاها. اللهم إني أعوذ بك من علم لا ينفع، ومن قلب لا يخشع، ومن نفس لا تشبع، ومن دعوة لا يستجاب لها',
+	'**‏اذكار  |  **اللهم إني أعوذ بك من شر ما عملت، ومن شر ما لم أعمل',
+	'**‏اذكار  |  **اللهم مصرف القلوب صرف قلوبنا على طاعتك',
+  ]
+  client.on('message', message => {
+  if (message.author.bot) return;
+  if (message.content.startsWith('!اذكار')) {
+	if(!message.channel.guild) return;
+  var client= new Discord.RichEmbed()
+  .setTitle("**اذكار**")
+  .setThumbnail(message.author.avatarURL)
+	.setFooter(`Rqmi , System`, 'https://images-ext-1.discordapp.net/external/DkLK0TXEAxoHpwBflZFbCPC0Zi92Xrmc0DvARomutb0/https/cdn.discordapp.com/icons/492335623504396289/152527c92f9fdd6ea38d3a6094d2e0f3.jpg')
+  .setColor('RANDOM')
+  .setDescription(`${adkar[Math.floor(Math.random() * adkar.length)]}`)
+				 .setTimestamp()
+  message.channel.sendEmbed(client);
+  message.react("??")
+  }
+  });
+	
+	
+	
+	
+	
+	 client.on('message',message =>{
+    var prefix = "!";
+    if(message.content.startsWith(prefix + 'top')) {
+  message.guild.fetchInvites().then(i =>{
+  var invites = [];
+   
+  i.forEach(inv =>{
+    var [invs,i]=[{},null];
+     
+    if(inv.maxUses){
+        invs[inv.code] =+ inv.uses+"/"+inv.maxUses;
+    }else{
+        invs[inv.code] =+ inv.uses;
+    }
+        invites.push(`invite: ${inv.url} inviter: ${inv.inviter} \`${invs[inv.code]}\`;`);
+   
+  });
+  var embed = new Discord.RichEmbed()
+  .setColor("#000000")
+  .setDescription(`${invites.join(`\n`)+'\n\n**By:** '+message.author}`)
+  .setThumbnail("https://media.giphy.com/media/G3va31oEEnIkM/giphy.gif")
+           message.channel.send({ embed: embed });
+   
+  });
+   
+    }
+  });
+  
+  
+  
+  
+  
+  
+  client.on('message', message => {
+            if (message.content.startsWith(prefix + "جديد")) {
+     let embed = new Discord.RichEmbed()
+.setThumbnail(message.author.avatarURL)
+.addField('     **!Skin** ' ,' **رؤيه السكن الخاص بك في لعبه ماين كرافت** ')
+.setColor('#7d2dbe')
+  message.channel.sendEmbed(embed);
+    }
+});
+
+
+
+
+
+
+
+client.on('message', async message => {
+  if(message.content.startsWith(prefix + "تقديم")) {
+    await message.channel.send("** ❓  حسنا, قم بكتابة ايدي البوت**").then(e => {
+    let filter = m => m.author.id === message.author.id
+    let lan = '';
+    let md = '';
+    let br = '';
+    let chaLan = message.channel.awaitMessages(filter, { max: 1, time: 40000, errors: ['time'] })
+    .then(collected => {
+      lan = collected.first().content
+      collected.first().delete()
+e.delete();
+     message.channel.send('** رائع, الأن قم بكتابة مميزات بوتك ❓**').then(m => {
+let chaMd = message.channel.awaitMessages(filter, { max: 1, time: 40000, errors: ['time'] })
+.then(co => {
+  md = co.first().content
+        co.first().delete()
+        m.delete();
+message.channel.send('**اخيرا وليس اخرا, قم بكتابة عدد السيرفرات والمستخدمين ❓ **').then(ms => {
+let br = message.channel.awaitMessages(filter, { max: 1, time: 40000, errors: ['time'] })
+.then(col => {
+  br = col.first().content
+        col.first().delete()
+
+ms.delete()
+
+ message.channel.send('جاري التقديم ..').then(b => {
+        setTimeout(() => {
+  b.edit(`**تم التقديم وسيتم الرد فـ اقرب وقت**`)
+        },2000);
+var gg = message.guild.channels.find('name', 'تقديم')
+if(!gg) return;
+if(gg) {
+gg.send({embed : new Discord.RichEmbed()
+.setDescription(`**  الأيدي :question:  : \n ${lan}\nالمميزات :link: :\n ${md} \nعدد السيرفرات والمستخدمين :question: :\n ${br}  \nتم التقديم بواسطة  : <@${message.author.id}> **`)  
+          .setFooter(`Rqmi , System`)
+.setTimestamp()
+});
+}        
+})
+})
+})
+})
+})
+})
+})
+ }
+})
+
+
+
+
+
+
+
+ client.on('message', message => {
+            if (message.content.startsWith("حبيبي")) {
+     let embed = new Discord.RichEmbed()
+.setThumbnail(message.author.avatarURL)
+.addField ('**ها**', ' ? ')
+.setColor('#7d2dbe')
+  message.channel.sendEmbed(embed);
+
+            }
+ });
+ 
+ 
+ 
+ 
+ 
+ 
+ client.on('message', message => {
+    if (message.content.startsWith("!bans")) {
+        message.guild.fetchBans()
+        .then(bans => message.channel.send(`${bans.size} عدد اشخاص المبندة من السيرفر `))
+  .catch(console.error);
+}
+});
+
+
+
+
+
+client.on('message', message => {
+  if (!message.content.startsWith(prefix)) return;
+  const verifed = ["417232164845781012"];
+if (message.content.startsWith(prefix + 'owner')) {
+    if(!message.channel.guild) return;
+if( verifed.some(word => message.author.id.includes(word)) ) {    return message.channel.sendMessage("**انت صاحب البوت **")
+} else {
+   message.reply("**انت لسا صاحب البوت**");   
+}
+}
+});
+
+
+
+
+client.on('message', message => {
+    if(message.channel.type === "dm") return;
+      if(message.content.startsWith ("!زواج")) {
+      if(!message.channel.guild) return message.reply(' This command only for servers ')
+      var proposed = message.mentions.members.first()
+
+      if(!message.mentions.members.first()) return message.reply('لازم تطلب ايد وحدة').catch(console.error);
+      if(message.mentions.users.size > 1) return message.reply('ولد ما يضبط لازم بنت تذكر لازم بنت الحلال').catch(console.error);
+       if(proposed === message.author) return message.reply(`**خنثى ؟ **`);
+        if(proposed === client.user) return message.reply(`** تبي تتزوجني؟ **`);
+              message.channel.send(`**${proposed} 
+ بدك تقبلي عرض الزواج من ${message.author}
+ العرض لمدة 10 ثانية 
+ اكتب موافقة او لا**`)
+
+const filter = m => m.content.startsWith("موافقة");
+message.channel.awaitMessages(filter, { max: 1, time: 15000, errors: ['time'] })
+.then(collected =>{ 
+    message.channel.send(`**${message.author} و ${proposed} الف الف مبروك انشاء الله تستمتعون بحياتكم الزوجية ويطول اعماركم ولا تنسون شهر العسل**`);
+})
+   .catch(collected => message.channel.send(`**السكوت علامة الرضا نقول قلللوش مبروك**`))
+
+   const filte = m => m.content.startsWith("لا");
+message.channel.awaitMessages(filte, { max: 1, time: 15000, errors: ['time'] })
+.then(collected =>{ 
+   message.channel.send(`**${message.author} تم رفض عرضك**`);
+})
+
+
+
+
+  }
+});
+
+
+
+
+client.on('message', message => {
+            if (message.content.startsWith("!rules")) {
+     let embed = new Discord.RichEmbed()
+.setThumbnail(message.author.avatarURL)
+.addField('     **اولا** ' ,' **ممنوع السب** ')
+.addField('     **ثانيا** ' ,' **لا تسوي سبام ** ')
+.addField('     **ثالثا** ' ,' **لا تزعج الاخرين** ')
+.addField('    **رابعا**' ,' **ممنوع الاعلانات** ')
+.addField('    **خامسا**' ,' **احترم الاخرين** ')
+.addField('    **سادسا**' ,' **لا تنشر في الشات او بل خاص** ')
+.addField('    **سابعا**' ,' **لا تنشر روابط!** ')
+.addField('    **ثامنا**' ,' **لا تسوي سبام ايموجي** ')
+.addField('    **تاسعا**' ,' **لا تطلب رتبه الاداره !** ')
+.setColor('#7d2dbe')
+  message.channel.sendEmbed(embed);
+    }
+});
+
+
+
+
+client.on('message', message => {
+            if (message.content.startsWith("قوانين")) {
+     let embed = new Discord.RichEmbed()
+.setThumbnail(message.author.avatarURL)
+.addField('     **اولا** ' ,' **ممنوع السب** ')
+.addField('     **ثانيا** ' ,' **لا تسوي سبام ** ')
+.addField('     **ثالثا** ' ,' **لا تزعج الاخرين** ')
+.addField('    **رابعا**' ,' **ممنوع الاعلانات** ')
+.addField('    **خامسا**' ,' **احترم الاخرين** ')
+.addField('    **سادسا**' ,' **لا تنشر في الشات او بل خاص** ')
+.addField('    **سابعا**' ,' **لا تنشر روابط!** ')
+.addField('    **ثامنا**' ,' **لا تسوي سبام ايموجي** ')
+.addField('    **تاسعا**' ,' **لا تطلب رتبه الاداره !** ')
+.setColor('#7d2dbe')
+  message.channel.sendEmbed(embed);
+    }
+});
+
+
+
+
+
+
+
+
+
+
+	
+	let sWlc = JSON.parse(fs.readFileSync("./setWlc.json", "UTF8"))   
+client.on('message', message => {
+if(message.channel.type === "dm") return;
+if(message.author.bot) return;
+  if(!sWlc[message.guild.id]) sWlc[message.guild.id] = {
+    channel: "welcome"
+}
+const channel = sWlc[message.guild.id].channel
+  if (message.content.startsWith(prefix + "setwelcomer")) {
+    if(!message.member.hasPermission(`MANAGE_GUILD`)) return;
+    let newChannel = message.content.split(' ').slice(1).join(" ")
+    if(!newChannel) return message.reply(`**${prefix}setwelcomer <channel name>**`)
+    sWlc[message.guild.id].channel = newChannel
+    message.channel.send(`**${message.guild.name}'s channel has been changed to ${newChannel}**`);
+  }
+   fs.writeFile('./setWlc.json', JSON.stringify(sWlc), (err) => {
+if (err) console.error(err);
+})
+});
+
+
+
+
+
+
+
+
+
+
+
+
+client.on("guildMemberAdd", member => {
+      if(!sWlc[member.guild.id]) sWlc[member.guild.id] = {
+    channel: "welcome"
+  }
+  const channel = sWlc[member.guild.id].channel
+    const sChannel = sWlc[member.guild.id].channel
+    let welcomer = member.guild.channels.find('name', sChannel);
+    let memberavatar = member.user.avatarURL
+      if (!welcomer) return;
+      if(welcomer) {
+member.guild.fetchInvites().then(guildInvites => {
+    const ei = invites[member.guild.id];
+    const invite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
+    const inviter = client.users.get(invite.inviter.id);
+    const yumz = member.guild.channels.find("name", `${sChannel}`);
+     yumz.send(`<@${member.user.id}> joined by <@${inviter.id}>`);
+   //  yumz.send(`<@${member.user.id}> joined using invite code ${invite.code} from <@${inviter.id}>. Invite was used ${invite.uses} times since its creation.`);
+  }); 
+      var Canvas = require('canvas')
+      var jimp = require('jimp')
+      
+      const w = ['./w1.png'];
+      
+              let Image = Canvas.Image,
+                  canvas = new Canvas(400, 200),
+                  ctx = canvas.getContext('2d');
+  
+              fs.readFile(`${w[Math.floor(Math.random() * w.length)]}`, function (err, Background) {
+                  if (err) return console.log(err)
+                  let BG = Canvas.Image;
+                  let ground = new Image;
+                  ground.src = Background;
+                  ctx.drawImage(ground, 0, 0, 400, 200);
+      
+      })
+      
+                      let url = member.user.displayAvatarURL.endsWith(".webp") ? member.user.displayAvatarURL.slice(5, -20) + ".gif" : member.user.displayAvatarURL;
+                      jimp.read(url, (err, ava) => {
+                          if (err) return console.log(err);
+                          ava.getBuffer(jimp.MIME_PNG, (err, buf) => {
+                              if (err) return console.log(err);
+      
+                                    ctx.font = "bold 12px Arial";
+                              ctx.fontSize = '20px';
+                              ctx.fillStyle = "#f1f1f1";
+                                ctx.fillText(member.user.username, 200, 150);
+                              
+                              //NAMEً
+                              ctx.font = "bold 12px Arial";
+                              ctx.fontSize = '20px';
+                              ctx.fillStyle = "#f1f1f1";
+      ctx.fillText(`Welcome To Server`, 260, 125);
+      
+                              //AVATARً
+                              let Avatar = Canvas.Image;
+                              let ava = new Avatar;
+                              ava.src = buf;
+                              ctx.beginPath();
+                              ctx.arc(77, 101, 62, 0, Math.PI*2);
+                              ctx.stroke();
+                                 ctx.clip();
+                                 ctx.drawImage(ava, 13, 38, 128, 126); 
+
+                            
+    welcomer.sendFile(canvas.toBuffer())
+      
+      
+                          
+      })
+      })
+      
+      }
+      });
 	
 	
 
