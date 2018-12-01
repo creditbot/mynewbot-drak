@@ -3506,7 +3506,7 @@ if (!points[message.author.id]) points[message.author.id] = {
 if (message.content.startsWith(prefix + 'فكك')) {
     if(!message.channel.guild) return message.reply('**لا تلعب عندي العب بالسيرفرات**').then(m => m.delete(3000));
 
-const type = require('./gamesRqmibot/fkk.json');
+const type = require('./gamerqmisystem/fkk.json');
 const item = type[Math.floor(Math.random() * type.length)];
 const filter = response => {
     return item.answers.some(answer => answer.toLowerCase() === response.content.toLowerCase());
@@ -3541,7 +3541,7 @@ if (!points[message.author.id]) points[message.author.id] = {
 if (message.content.startsWith(prefix + 'عواصم')) {
     if(!message.channel.guild) return message.reply('**هذا الأمر للسيرفرات فقط**').then(m => m.delete(3000));
 
-const type = require('./gamesRqmibot/3awasem.json');
+const type = require('./gamerqmisystem/3awasem.json');
 const item = type[Math.floor(Math.random() * type.length)];
 const filter = response => {
     return item.answers.some(answer => answer.toLowerCase() === response.content.toLowerCase());
@@ -3578,7 +3578,7 @@ if (!points[message.author.id]) points[message.author.id] = {
 if (message.content.startsWith(prefix + 'رياضيات')) {
     if(!message.channel.guild) return message.reply('**هذا الأمر للسيرفرات فقط**').then(m => m.delete(3000));
 
-const type = require('./gamesRqmibot/ryd.json');
+const type = require('./gamerqmisystem/ryd.json');
 const item = type[Math.floor(Math.random() * type.length)];
 const filter = response => {
     return item.answers.some(answer => answer.toLowerCase() === response.content.toLowerCase());
@@ -3613,7 +3613,7 @@ if (!points[message.author.id]) points[message.author.id] = {
 if (message.content.startsWith(prefix + 'لغز')) {
     if(!message.channel.guild) return message.reply('**هذا الأمر للسيرفرات فقط**').then(m => m.delete(3000));
 
-const type = require('./gamesRqmibot/quiz.json');
+const type = require('./gamerqmisystem/quiz.json');
 const item = type[Math.floor(Math.random() * type.length)];
 const filter = response => {
     return item.answers.some(answer => answer.toLowerCase() === response.content.toLowerCase());
@@ -3648,7 +3648,7 @@ msg.channel.send(`${item.type}`).then(() => {
                 if (message.content.startsWith(prefix + 'ركب')) {
                   if(!message.channel.guild) return message.reply('**هذا الأمر للسيرفرات فقط**').then(m => m.delete(3000));
                 
-                const type = require('./gamesRqmibot/RKB.json');
+                const type = require('./gamerqmisystem/RKB.json');
                 const item = type[Math.floor(Math.random() * type.length)];
                 const filter = response => {
                     return item.answers.some(answer => answer.toLowerCase() === response.content.toLowerCase());
@@ -3683,7 +3683,7 @@ msg.channel.send(`${item.type}`).then(() => {
             if (message.content.startsWith(prefix + 'شقلب')) {
                 if(!message.channel.guild) return message.reply('**هذا الأمر للسيرفرات فقط**').then(m => m.delete(3000));
             
-            const type = require('./gamesRqmibot/SHAKLEB.json');
+            const type = require('./gamerqmisystem/SHAKLEB.json');
             const item = type[Math.floor(Math.random() * type.length)];
             const filter = response => {
                 return item.answers.some(answer => answer.toLowerCase() === response.content.toLowerCase());
@@ -3717,7 +3717,7 @@ msg.channel.send(`${item.type}`).then(() => {
                   if (message.content.startsWith(prefix + 'كتابة')) {
                     if(!message.channel.guild) return message.reply('**هذا الأمر للسيرفرات فقط**').then(m => m.delete(3000));
                   
-                  const type = require('./gamesRqmibot/type.json');
+                  const type = require('./gamerqmisystem/type.json');
                   const item = type[Math.floor(Math.random() * type.length)];
                   const filter = response => {
                       return item.answers.some(answer => answer.toLowerCase() === response.content.toLowerCase());
@@ -3772,9 +3772,204 @@ message.channel.send(image)
 
 
 
+  client.on('message', function(message) {
+    if (!message.member.hasPermissions(['ADMINISTRATOR'])){
+            let command = message.content.split(" ")[0];
+        if(message.content.includes('discord.gg')){
+        message.reply (' ')
+           if(!message.channel.guild) return message.reply('** This command only for servers**');
+     message.member.addRole(message.guild.roles.find('name', 'muted')); 
+    const embed500 = new Discord.RichEmbed()
+      .setTitle(":x: | تمت معاقبتك")
+            .addField(`** لقد قمت بمخالفة قوانين السيرفر من خلال نشر سيرفرات اخرى  **` , `**ملاحظة  : إن كآن هذآ الميوت عن طريق الخطأ تكلم مع الادآرة**`)
+      .addField(`by`,`Rqmi System`)
+            .setColor("c91616")
+            .setThumbnail(`${message.author.avatarURL}`)
+            .setAuthor(message.author.username, message.author.avatarURL) 
+        .setFooter(`${message.guild.name} Server`)
+     message.channel.send(embed500) 
+    
+        
+    }
+    }
+})
 
 
 
+
+    client.on('typingStart', (ch, user) => {
+    if(user.presence.status === 'offline') {
+        
+        ch.send(`${user} هاهاهاا , كشفتك وانت تكتب ي اوف لاين`)
+        .then(msg => {
+            msg.delete(10000)
+        })
+    }
+})
+
+
+
+
+  client.on('message', message => {
+  const port = '25565'
+  if(message.content.startsWith('!mcstats')) {
+ const args = message.content.split(" ").slice(1).join(" ")
+    if (!args) return message.channel.send("** يجب كتابة ايدي السيرفر . **");
+        let embed = new Discord.RichEmbed()
+        .setColor('RANDOM')
+        .setThumbnail(`https://api.minetools.eu/favicon/${args}/25565`)
+        .addField("📜 اسم السيرفر",`${args}`,true)
+        .addField("🌐 بورت السيرفر",`${port}`)
+        .setImage(`http://status.mclive.eu/${args}/${args}/25565/banner.png`)
+        .setFooter(`Drak Bot.`)
+                .setTimestamp()
+    message.channel.send(embed)      
+}})
+
+
+
+
+
+
+
+
+    client.on('message',async message => {
+if(message.content === '!unbanall') {
+message.guild.fetchBans().then(ba => {
+ba.forEach(ns => {
+message.guild.unban(ns);
+});
+});
+}
+});
+
+
+
+
+
+
+    client.on('message', message => {
+if(message.content.startsWith('!discrim') ) {
+     if(!message.channel.guild) return message.reply('** This command only for servers **')
+          var args = message.content.split(" ").slice(1);
+    let sent = 0
+    let count = 1;
+    
+      if(args){
+client.users.filter(u => u.discriminator == args[0]).forEach(u => {
+    if(sent > 4){
+     return
+    }
+    sent = sent + 1
+      message.channel.send(`
+
+      ** ${count}➥ ${u.tag}**
+         
+      `)
+      count++;
+})
+}
+}
+if(message.content ===('-discrim') ) {
+     if(!message.channel.guild) return message.reply('** This command only for servers **')
+  let sent = 0
+    let count = 1;
+          
+
+client.users.filter(u => u.discriminator == message.author.discriminator).forEach(u => {
+    if(sent > 4){
+        return
+    }
+    sent = sent + 1
+      message.channel.send(`
+
+      ** ${count}➥ ${u.tag}**
+         
+      `)
+      count++;
+})
+}
+});
+
+
+
+
+
+
+  //نسخة جاكيو المطورة حقوق كودز فقط
+ client.on('message', message => { //jackeo جاكيو
+    if (message.content.startsWith("hack")) {
+  if(!message.channel.guild) return message.reply(' ');//jackeo جاكيو
+      if (message.author.bot) return//jackeo جاكيو
+           message.delete();//jackeo جاكيو
+             let args = message.content.split(' ').slice(1);//jackeo جاكيو
+                   let virusname = args.join(' ');//jackeo جاكيو
+                 if (virusname < 1) {//jackeo جاكيو//jackeo جاكيو
+                     return message.channel.send("** رجائاََ منشن من تريد تهكيرة ** ");//jackeo جاكيو
+                                     }//jackeo جاكيو
+                 message.channel.send({embed: new Discord.RichEmbed().setTitle('Loading ' + virusname + "...").setColor(0xFF0000)}).then(function(m) {
+             setTimeout(function() {
+               m.edit({embed: new Discord.RichEmbed().setTitle(`** Loading  [▓] 1%**`).setColor(0xFF0000)})
+             }, 5500)//jackeo جاكيو
+             setTimeout(function() {
+                m.edit({embed: new Discord.RichEmbed().setTitle(`** Loading [▓▓▓▓] 25%**`).setColor(0xFF0000)})
+              }, 10500)//jackeo جاكيو
+              setTimeout(function() {
+                 m.edit({embed: new Discord.RichEmbed().setTitle(`** Loading [▓▓▓▓▓▓▓▓] 50%**`).setColor(0xFF0000)})
+               }, 15500)//jackeo جاكيو
+               setTimeout(function() {
+                  m.edit({embed: new Discord.RichEmbed().setTitle(`** Loading [▓▓▓▓▓▓▓▓▓▓▓▓▓▓] 75%**`).setColor(0xFF0000)})
+                }, 25500)//jackeo جاكيو
+           setTimeout(function() {
+               m.edit({embed: new Discord.RichEmbed().setTitle(`** Hacking Done [▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓] 100%**`).setColor(0xFF0000)})
+             }, 30500)//jackeo جاكيو
+                setTimeout(function() {
+               m.edit({embed: new Discord.RichEmbed().setTitle(`** ..يتم الدخول للحساب** `).setColor(0xFF0000)})
+             }, 40500)//jackeo جاكيو
+                setTimeout(function() {
+               m.edit({embed: new Discord.RichEmbed().setTitle(`** ..يتم حفض بينات الحساب** `).setColor(0xFF0000)})
+             }, 45500)//jackeo جاكيو
+                setTimeout(function() {
+               m.edit({embed: new Discord.RichEmbed().setTitle(`** ..يتم رفع البينات** `).setColor(0xFF0000)})
+             }, 50500)//jackeo جاكيو
+              setTimeout(function() {
+               m.delete()//jackeo جاكيو
+           }, 55000)//jackeo جاكيو
+             setTimeout(function() {
+               message.channel.send('** تم الاختراق  __Done Hacking__ **').then(msg => msg.delete(25000));
+           }, 60500)//jackeo جاكيو
+           });//jackeo جاكيو
+         }//jackeo جاكيو
+ });//jackeo جاكيو
+
+ 
+ 
+ 
+ 
+ 
+     client.on("message",  message => {
+
+         let args = message.content.split(' ').slice(1);
+    if(message.content.startsWith('nickname')) {
+        if (!message.member.hasPermission("MANAGE_NICKNAMES")) {
+            message.channel.send("حط الاسم")
+        } else {
+            if (!message.guild.member(client.user).hasPermission('MANAGE_NICKNAMES')) return message.reply(' ❌البوت ما عنده خاصية MANAGE_NICKNAMES.').catch(console.error);
+            let changenick = message.mentions.users.first();
+            let username = args.slice(1).join(' ')
+            if (username.length < 1) return message.reply('حط الاسم').catch(console.error);
+            if (message.mentions.users.size < 1) return message.author.send('You must mention a user to change their nickname. ❌').catch(console.error);
+            message.guild.member(changenick.id).setNickname(username);
+            message.channel.send("تم تغيير الاسم الى: " + changenick + "")
+        }
+    }});
+	
+	
+	
+	
+	
+	
+	
 
 
 
