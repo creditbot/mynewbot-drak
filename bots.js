@@ -4509,12 +4509,6 @@ let br = message.channel.awaitMessages(filter, { max: 1, time: 40000, errors: ['
         col.first().delete()
 
 ms.delete()
-     message.channel.send('**:shield: | [ هل انت متأكد من نشر الكود؟ | [ نعم ] او [ لا**').then(m => {
-let chayn = message.channel.awaitMessages(filter, { max: 1, time: 40000, errors: ['time'] })
-.then(co => {
-  yn = co.first().content
-        co.first().delete()
-        m.delete();
 
  message.channel.send('** انتظر..**').then(b => {
         setTimeout(() => {
