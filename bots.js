@@ -4107,6 +4107,25 @@ gg.send({embed : new Discord.RichEmbed()
  
  
  
+ 
+   client.on('message', message => {
+            if (message.content.startsWith("كنق")) {
+     let embed = new Discord.RichEmbed()
+.setThumbnail(message.author.avatarURL)
+.addField ('**العنق كريتكس الجلاد**', ' :joy: ')
+.setColor('#7d2dbe')
+  message.channel.sendEmbed(embed);
+
+            }
+ });
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
  client.on('message', message => {
     if (message.content.startsWith("!bans")) {
         message.guild.fetchBans()
@@ -4475,7 +4494,7 @@ mentionned.send(` :credit_card: | Transfer Receipt \`\`\`You have received ${arg
 	
  
 client.on('message',async message => {
-    if(message.content.startsWith(prefix + "js")) {
+    if(message.content.startsWith(prefix + "javas")) {
   if(!message.channel.guild) return message.reply('This Command For Servers Only !');
     let jscodes = message.guild.channels.find(`name`, "•-discord-js");
     if(!jscodes) return message.channel.send(":x:لم اجد الروم الخاص بنشر الاكواد");
@@ -4564,7 +4583,7 @@ ${thisMessage}\`\`\`
 	
 	
 	client.on("message", message => {
-            if(message.content.startsWith("*تقديم")) {
+            if(message.content.startsWith("!تقديم")) {
         if(!message.channel.guild) return;
                 if(message.author.bot) return;
         let channel = message.guild.channels.find("name", "التقديمات")
@@ -4641,7 +4660,7 @@ ${thisMessage}\`\`\`
 }
         });
         client.on('message', message=>{
-            if(message.content.startsWith("*روم1")) {
+            if(message.content.startsWith("!روم1")) {
             if(!message.channel.guild) return;
                 if(message.author.bot) return;
                 if(!message.member.hasPermission('ADMINISTRATOR')) return message.reply("**تحتاج الى `MANAGE_CHANNELS`**");
@@ -4658,7 +4677,7 @@ ${thisMessage}\`\`\`
   let mention = message.mentions.members.first();
   let role = message.content.split(" ").slice(2).join(" ");
   let mySupport = message.guild.roles.find('name',role);
-  if(message.content.startsWith("*قبول")) {
+  if(message.content.startsWith("!قبول")) {
     let acRoom = message.guild.channels.find('name', 'القبول-الرفض');
     if(!acRoom) return message.reply("!!setac من فضلك انشاء روم **القبول-ال��فض** او اكتب الامر");
     if(acRoom) {
@@ -4676,7 +4695,7 @@ ${thisMessage}\`\`\`
 });
 client.on('message',async message => {
   let mention = message.mentions.members.first();
-  if(message.content.startsWith("*رفض")) {
+  if(message.content.startsWith("!رفض")) {
   if(!message.channel.guild) return;
   let acRoom = message.guild.channels.find('name', 'القبول-الرفض');
   if(!acRoom) return message.reply("!!setac من فضلك انشاء روم **القبول-الرفض** او اكتب الامر");
@@ -4687,7 +4706,7 @@ client.on('message',async message => {
   }
 });
           client.on('message', message=>{
-            if(message.content.startsWith("*روم2")) {
+            if(message.content.startsWith("!روم2")) {
          if(!message.channel.guild) return;
                 if(message.author.bot) return;
                 if(!message.member.hasPermission('ADMINISTRATOR')) return message.reply("**تحتاج الى `MANAGE_CHANNELS`**");
