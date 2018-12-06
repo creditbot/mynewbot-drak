@@ -886,7 +886,7 @@ const cuttweet = [     'كت تويت ‏| تخيّل لو أنك سترسم ش�
     }
 });	
 client.on('message', function(message) {
-    if(message.content.startsWith(prefix + 'roll')) {
+    if(message.content.startsWith(prefix + 'قرعة')) {
         let args = message.content.split(" ").slice(1);
         if (!args[0]) {
             message.channel.send('حط رقم معين يتم السحب منه');
@@ -1851,7 +1851,7 @@ const Love = [  "**احبك / عدد قطرات المـــطر والشجر و
   var embed = new Discord.RichEmbed()
   .setColor('RANDOM')
    .setThumbnail(message.author.avatarURL)
- .addField('RqmiBot' ,
+ .addField('Our - System ©' ,
   `${Love[Math.floor(Math.random() * Love.length)]}`)
   message.channel.sendEmbed(embed);
   console.log('[id] Send By: ' + message.author.username)
@@ -4353,132 +4353,6 @@ member.guild.fetchInvites().then(guildInvites => {
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	let profile = JSON.parse(fs.readFileSync("./profile.json", "utf8"))
-client.on("message", message => {
-  if (message.author.bot) return;
- if(!message.channel.guild)return;
-  if (!profile[message.author.id]) profile[message.author.id] = {
-    tite: 'HypeLC User',
-    rep: 0,
-   reps: 'NOT YET',
-   lastDaily:'Not Collected',
-    level: 0,
-    points: 0,
-    credits: 1,
-  };
-fs.writeFile('./profile.json', JSON.stringify(profile), (err) => {
-if (err) console.error(err);
-})
-});
-client.on("message", (message) => {
-  let men = message.mentions.users.first()
-  if (message.author.bot) return;
-    if (message.author.id === client.user.id) return;
-    if(!message.channel.guild) return;
-if (message.content.startsWith(prefix + 'credit')) {
-  if(men) {
-  if (!profile[men.id]) profile[men.id] = {
-   lastDaily:'Not Collected',
-   credits: 1,
- };
-  }
-  if(men) {
-message.channel.send(`** ${men.username}, :credit_card: balance` + " is `" + `${profile[men.id].credits}$` + "`.**")
-} else {
- message.channel.send(`** ${message.author.username}, your :credit_card: balance` + " is `" + `${profile[message.author.id].credits}$` + "`.**")
-}
-}
-if(message.content.startsWith(prefix + "daily")) {
-
-
-  if(profile[message.author.id].lastDaily != moment().format('day')) {
-   profile[message.author.id].lastDaily = moment().format('day')
-   profile[message.author.id].credits += 310
-    message.channel.send(`**${message.author.username} you collect your \`310\` :credit_card: daily pounds**`)
-} else {
-    message.channel.send(`**:stopwatch: | ${message.author.username}, your daily :yen: credits refreshes ${moment().endOf('day').fromNow()}**`)
-}
-}
-let cont = message.content.slice(prefix.length).split(" ");
-let args = cont.slice(2);
-let sender = message.author
-if(message.content.startsWith(prefix + 'trans')) {
-          if (!args[0]) {
-            message.channel.send(`**Usage: ${prefix}trans @someone amount**`);
-         return;
-           }
-        // We should also make sure that args[0] is a number
-        if (isNaN(args[0])) {
-            message.channel.send(`**Usage: ${prefix}trans @someone amount**`);
-            return; // Remember to return if you are sending an error message! So the rest of the code doesn't run.
-             }
-             if(profile[message.author.id].credits < args[0]) return message.channel.send("**Your Credits is not enough  that**")
-if(args[0].startsWith("-")) return  message.channel.send('**!! I Cant Do it**');
-				 let defineduser = '';
-            let firstMentioned = message.mentions.users.first();
-            defineduser = (firstMentioned)
-            if (!defineduser) return message.channel.send(`**Usage: ${prefix}trans @someone amount**`);
-            if(defineduser.id === message.author.id) return message.channel.send("***Transfering to your self hah ?!***")
-            var mentionned = message.mentions.users.first();
-if (!profile[sender.id]) profile[sender.id] = {}
-if (!profile[sender.id].credits) profile[sender.id].credits = 310;
-fs.writeFile('./profile.json', JSON.stringify(profile), (err) => {
-if (err) console.error(err);
-})
-var x = ['5587' ,' 9978' , '3785' , '7734' , '9864' , '7681' , '3758' , '7834' , '3489' , '1382' , '7389' , '8762' , '0889' , '0388' , '3316' , '0976' , '8603' , '1842' , '4565' , '9524' , '9524' , '0964' , '5930' , '5678' , '9567' , '6099' , '7058' , '0001' , '1324' , '9834' , '7668' , '0378' , '7055' , '9733' , '9876' , '9846' , '9685' , '8574' , '8975' , '9845' , '9862' , '0069' , '0807' , '0673' , '0813' , '1235' , '6879'];
-var x2 = ['5587' ,' 9978' , '3785' , '7734' , '9864' , '7681' , '3758' , '7834' , '3489' , '1382' , '7389' , '8762' , '0889' , '0388' , '3316' , '0976' , '8603' , '1842' , '4565' , '9524' , '9524' , '0964' , '5930' , '5678' , '9567' , '6099' , '7058' , '0001' , '1324' , '9834' , '7668' , '0378' , '7055' , '9733' , '9876' , '9846' , '9685' , '8574' , '8975' , '9845' , '9862' , '0069' , '0807' , '0673' , '0813' , '1235' , '6879'];
-        var x3 = Math.floor(Math.random()*x.length)
-        message.channel.send(` \`${args}\`** : الملبغ**  \n \`${x[x3]}\` ** : اكتب الرقم التالي حتي تتم عملية التحويل **`).then(msg1=> { 
-        var r = message.channel.awaitMessages(msg => msg.content == x2[x3], { maxMatches : 1, time : 60000, errors : ['time'] })
-        r.catch(() => {
-            message.delete()
-            r.delete()
-            msg.delete()
-            message.channel.sendEmbed(embed)
-        })
-        r.then(s=> {
-      var mando = message.mentions.users.id;
-      if  (!profile[defineduser.id]) profile[defineduser.id] = {}
-      if (!profile[defineduser.id].credits) profile[defineduser.id].credits = 200;
-      profile[defineduser.id].credits += (+args[0]);
-      profile[sender.id].credits += (-args[0]);
-      let mariam = message.author.username
-message.channel.send(`**:moneybag: | ${message.author.username}, has transferrerd ` + "`" + args[0] + "$` to " + `<@${defineduser.id}>**`)
-mentionned.send(` :credit_card: | Transfer Receipt \`\`\`You have received ${args[0]} from user ${message.author.username} ; (ID (${message.author.id})\`\`\``);
-               message.channel.sendEmbed(embed)
-        })
-        })
-        
-		
-
-
-
-
-}
-
-      });
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	client.on("ready", () => {
   function lol() {
     client.guilds.get('518479965533241366').roles.find("name", "♛『Rainbow 』♛").setColor("RANDOM");
@@ -4735,11 +4609,46 @@ if( verifed.some(word => message.author.id.includes(word)) ) {    return message
 }
 });
 	
+
+	
+	client.on("message", (message) => {
+    if(message.content.startsWith(prefix+"gmail")) {
+        message.channel.send(JSON.stringify({
+            gmail: Math.random().toString(36).slice(4).trim()+"@gmail.com",
+            password: Math.random().toString(36).slice(4).trim()
+        }))
+    }
+})
+
+
+client.on("message", (message) => {
+    if(message.content.startsWith(prefix+"hotmail")) {
+        message.channel.send(JSON.stringify({
+            hotmail: Math.random().toString(36).slice(4).trim()+"@hotmail.com",
+            password: Math.random().toString(36).slice(4).trim()
+        }))
+    }
+})
 	
 	
 	
 	
 	
+	
+	
+	   var memes =["https://media.giphy.com/media/pjk3wZcciRENa/giphy.gif","http://78.media.tumblr.com/fd4383e21495f2bb10ed699cd73f22ca/tumblr_n5l0pk3w4E1so8ds0o1_500.gif","https://media1.giphy.com/media/14309XrKEC7yyk/giphy.gif","http://gifimage.net/wp-content/uploads/2017/06/anime-gif-13-1.gif","https://i.imgur.com/M3BG3Ck.gif","https://4.bp.blogspot.com/-yDd1fLFMKts/WeX_LrmWhwI/AAAAAAAALsU/mLO7KCD0DFMp8n8xbdMdJNR5V2D0D9WXwCLcBGAs/s1600/tenor.gif","https://secure.static.tumblr.com/940bbaba171f6b2f2dabd11c17fd3f20/kj1pjcr/jxWok11nj/tumblr_static_filename_640_v2.gif","https://data.whicdn.com/images/110768190/original.gif","http://78.media.tumblr.com/80f12fdc314760b2ba3e10204e33323d/tumblr_nc1n9weNg11tk3dxfo1_500.gif","https://78.media.tumblr.com/ec3f0546a20a75cd47c00e95ef0ba0a7/tumblr_o3oyhk49JC1u6348eo1_500.gif","https://thumbs.gfycat.com/MassiveUnlinedDarwinsfox-max-1mb.gif","https://data.whicdn.com/images/120798528/original.gif","https://i.gifer.com/NZcE.gif","https://media.giphy.com/media/2aH3YUqjx92cE/giphy.gif","https://78.media.tumblr.com/99fcbe4544d83d27babb216a3f3bb8a3/tumblr_n1shx2AC2e1qztgoio3_500.gif","https://data.whicdn.com/images/81429641/original.gif","https://78.media.tumblr.com/6eace49891b549d558f3d1a2c0ad3c98/tumblr_n4xmoqCrPj1spu161o8_500.gif","https://pa1.narvii.com/6088/b868bd47eb802373aa8b8203f76b07dd04846d1f_hq.gif","https://cdn.discordapp.com/attachments/458384513173684224/460742842503921669/Tumblr_mdi9s0YkbA1rao0vlo1_500.gif","https://cdn.discordapp.com/attachments/458384513173684224/460742882064728065/Chuunibyou-Demo-Koi-Ga-Shitai-6.gif"]
+client.on('message', message => {
+if(message.content.startsWith(prefix + 'انمي')) {
+     var embed = new Discord.RichEmbed()
+.setImage(memes[Math.floor(Math.random() * memes.ength)])
+message.channel.sendEmbed(embed);
+}
+});
+
+
+
+
+
 	
 	
 	
