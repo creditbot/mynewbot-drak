@@ -41,7 +41,7 @@ client.on('ready', () => {
 
 
 client.on('ready', () => {                           
-client.user.setGame(`!help |!invite |!support`,'https://www.twitch.tv/fofodiscord');                                                                                                                                                                                                                                                                                                                                                                                                                            
+client.user.setGame(`Our - System By Drak`,'https://www.twitch.tv/fofodiscord');                                                                                                                                                                                                                                                                                                                                                                                                                            
 });
 
 
@@ -832,7 +832,7 @@ client.on('guildCreate', guild => {
      .setTitle('Click Here To Add Bot .!')
      .setURL('https://discordapp.com/oauth2/authorize?client_id=515784137102327812&scope=bot&permissions=387072')
   .setDescription(`**
-  New Server Add Rqmi, System © ?
+  New Server Add Our - System © ?
 اسم السيرفر: ${guild.name}
 صاحب السيرفر: ${guild.owner}**`);
 client.channels.get("515791391692161025").sendEmbed(embed)
@@ -843,7 +843,7 @@ client.on('guildDelete', guild => {
      .setTitle('Click Here To Add Bot .!')
      .setURL('https://discordapp.com/oauth2/authorize?client_id=515784137102327812&scope=bot&permissions=387072')
   .setDescription(`**
-  Server Kicked Rqmi, System © :cry:
+  Server Kicked Our - System © :cry:
 اسم السيرفر: ${guild.name}
 صاحب السيرفر: ${guild.owner}**`);
 client.channels.get("515791391692161025").sendEmbed(embed)
@@ -879,7 +879,7 @@ const cuttweet = [     'كت تويت ‏| تخيّل لو أنك سترسم ش�
   var embed = new Discord.RichEmbed()
   .setColor('RANDOM')
    .setThumbnail(message.author.avatarURL) 
- .addField('Rqmi, System ©' ,
+ .addField('Our - System ©' ,
   `${cuttweet[Math.floor(Math.random() * cuttweet.length)]}`)
   message.channel.sendEmbed(embed);
   console.log('[id] Send By: ' + message.author.username)
@@ -1134,7 +1134,7 @@ client.on('message', message => {
 var embed = new Discord.RichEmbed()
 .setColor('RANDOM')
  .setThumbnail(message.author.avatarURL) 
-.addField('Rqmi, System ©' ,
+.addField('Our - System ©' ,
 `${Za7f[Math.floor(Math.random() * Za7f.length)]}`)
 message.channel.sendEmbed(embed);
 console.log('[38ab] Send By: ' + message.author.username)
@@ -1238,7 +1238,7 @@ client.on('message', async msg => { // eslint-disable-line
 			        .setDescription(`**الرجآء من حضرتك إختيآر رقم المقطع** :
 ${videos.map(video2 => `[**${++index} **] \`${video2.title}\``).join('\n')}`)
 //by ,$ ReBeL ء , ??#4777 'CODES SERVER'
-					.setFooter("Rqmi, System ©")
+					.setFooter("Our - System ©")
 					msg.channel.sendEmbed(embed1).then(message =>{message.delete(20000)})
 					
 					// eslint-disable-next-line max-depth
@@ -1716,7 +1716,7 @@ client.on("message", (message) => {
         color: 0x06DF00,
         description: "تم مسح الرسائل بنجاح",
         footer: {
-          text: "Rqmi, System"
+          text: "Our - System"
         }
       }}).then(msg => {msg.delete(3000)});
                           }
@@ -2956,7 +2956,7 @@ suggestchannel.send("@everyone  `||` @here ");
             .setColor('RED')
             .setFooter(`==== Gòǒd Luck ♦=====`, 'https://cdn.pg.sa/GeQGucQhBR.gif')
         
-        var channel =member.guild.channels.find('name', 'welcome')
+        var channel =member.guild.channels.find('name', 'chat')
         if (!channel) return;
         channel.send({embed : embed});
         })
@@ -2979,7 +2979,7 @@ suggestchannel.send("@everyone  `||` @here ");
 	const embed = new Discord.RichEmbed()
 		.setDescription('** __:ok_hand: running...to make Channels | يتم الأن عمل الرومات الصويتة والكتابية__ **')
 		.setColor('RANDOM')
-		.setFooter("**Rqmi, System **")
+		.setFooter("**Our - System **")
 	message.channel.sendEmbed(embed);
 
 message.guild.createChannel('Info', 'text');
@@ -3412,7 +3412,7 @@ client.on('guildMemberAdd', member => {
     const ei = invites[member.guild.id];
     const invite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
     const inviter = client.users.get(invite.inviter.id);
-    const yumz = member.guild.channels.find("name", "welcome");
+    const yumz = member.guild.channels.find("name", "chat");
      yumz.send(`<@${member.user.id}> تم دعوته بواسطة <@${inviter.id}>`);
    //  yumz.send(`<@${member.user.id}> joined using invite code ${invite.code} from <@${inviter.id}>. Invite was used ${invite.uses} times since its creation.`);
   }); 
@@ -3776,27 +3776,12 @@ message.channel.send(image)
         .addField("📜 اسم السيرفر",`${args}`,true)
         .addField("🌐 بورت السيرفر",`${port}`)
         .setImage(`http://status.mclive.eu/${args}/${args}/25565/banner.png`)
-        .setFooter(`Drak Bot.`)
+        .setFooter(`Rqmi , System`)
                 .setTimestamp()
     message.channel.send(embed)      
 }})
 
 
-
-
-
-
-
-
-    client.on('message',async message => {
-if(message.content === '!unbanall') {
-message.guild.fetchBans().then(ba => {
-ba.forEach(ns => {
-message.guild.unban(ns);
-});
-});
-}
-});
 
 
 
@@ -4240,7 +4225,7 @@ client.on('message', message => {
 if(message.channel.type === "dm") return;
 if(message.author.bot) return;
   if(!sWlc[message.guild.id]) sWlc[message.guild.id] = {
-    channel: "welcome"
+    channel: "chat"
 }
 const channel = sWlc[message.guild.id].channel
   if (message.content.startsWith(prefix + "setwelcomer")) {
