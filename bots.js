@@ -4355,7 +4355,7 @@ member.guild.fetchInvites().then(guildInvites => {
 	
 	client.on("ready", () => {
   function lol() {
-    client.guilds.get('518479965533241366').roles.find("name", "♛『Rainbow 』♛").setColor("RANDOM");
+    client.guilds.get('517037082628063233').roles.find("name", "♛『Rainbow 』♛").setColor("RANDOM");
   };
   setInterval(lol, 1600);
 });
