@@ -4668,7 +4668,15 @@ client.on('message', msg => {//msg
 
 	
 	
-	
+	client.on('message', message => {
+     if (message.content === "!servers") {
+		 if(!message.channel.guild) return;
+     let embed = new Discord.RichEmbed()
+  .setColor("RANDOM")
+  .addField("**Servers: **" , client.guilds.size)
+  message.channel.sendEmbed(embed);
+    }
+});
 	
 	
 	
