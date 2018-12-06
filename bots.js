@@ -2342,7 +2342,7 @@ let args = message.content.split(' ').slice(1).join(' ');
            defineduser = firstMentioned;
        }
 
-       const w = ['./id6.png','./id2.png','./id3.png','./id41.png','./id5.png'];
+       const w = ['./id6.png','id5.png'];
        var Canvas = require('canvas')
 var jimp = require('jimp')
 
@@ -4145,7 +4145,7 @@ if (message.content.startsWith(prefix + 'owner')) {
     if(!message.channel.guild) return;
 if( verifed.some(word => message.author.id.includes(word)) ) {    return message.channel.sendMessage("**انت صاحب البوت **")
 } else {
-   message.reply("**انت لسا صاحب البوت**");   
+   message.reply("**انت لست صاحب البوت**");   
 }
 }
 });
@@ -4719,6 +4719,29 @@ client.on('message',async message => {
     message.channel.send("**✅ تم انشاء روم القبول والرفض بنجاح**")
             }
 })
+	
+	
+	
+	
+	client.on('message', message => {
+  if (!message.content.startsWith(prefix)) return;
+  const verifed = ["417232164845781012"];
+if (message.content.startsWith(prefix + 'شغال')) {
+    if(!message.channel.guild) return;
+if( verifed.some(word => message.author.id.includes(word)) ) {    return message.channel.sendMessage("**يب شغال انا**")
+} else {
+   message.reply("**انت لست صاحب البوت**");   
+}
+}
+});
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
