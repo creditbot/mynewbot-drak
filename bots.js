@@ -4633,19 +4633,6 @@ client.on("message", (message) => {
 	
 	
 	
-	
-client.on('message', message => {
-    if (!developers.includes(message.author.id)) return;
-     if (message.content.toLowerCase() === prefix + "bot") {
-message.channel.send(`
-
-__Servers : ${client.guilds.size}__
-__Users : ${client.users.size}__
-__Channels : ${client.channels.size}__
-
-`);
-    }
-});
 
 
 
